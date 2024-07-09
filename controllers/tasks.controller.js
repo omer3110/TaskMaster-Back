@@ -111,11 +111,11 @@ async function createTask(req, res) {
 
 async function editTask(req, res) {
   const { id } = req.params;
-  const { title, description, body, todoList, isPinned } = req.body;
+  const { title, description, todoList, isPinned } = req.body;
   try {
     const updatedTask = await Task.findOneAndUpdate(
       { _id: id, user: req.userId },
-      { title, description, body, todoList, isPinned },
+      { title, description, todoList, isPinned },
       { new: true, runValidators: true }
     );
     if (!updatedTask) {
